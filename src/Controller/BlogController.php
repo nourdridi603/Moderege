@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Option;
 use App\Entity\Sondage;
 use App\Form\SondageType;
 use App\Repository\SondageRepository;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/creer/{id}", name="creersondage", methods={"GET"})
+     * @Route("/creer/{id}", name="creersondage", methods={"GET","POST"})
      * @param SondageRepository $sondageRepository
      * @param QuestionRepository $questionRepository
      * @return Response
@@ -59,6 +60,50 @@ class BlogController extends AbstractController
 
 
         ]);
+    }
+    /**
+     * @Route("/nvl", name="nvl", methods={"GET"})
+     */
+    public function nvl(): Response
+    {
+        return $this->render('blog/creersondage.html.twig');
+    }
+
+    /**
+     * @Route("/neww/{id}", name="neww")
+     * @param Request $request
+     * @return \symfony\Component\HttpFoundation\Response
+     */
+public function new(Request $request,$id, SondageRepository $sondageRepository):Response{
+    $question = new Question();
+
+
+    $form=$this->createForm(QuestionType::class,$question);
+    $form->handleRequest($request);
+
+    $sondage=$sondageRepository->find($id);
+
+
+
+    if ($form->isSubmitted()&& $form->isValid() ) {
+        $em= $this->getDoctrine()->getManager();
+
+        $question->setSondage($sondage);
+        $em->persist($question);
+
+
+        $em->flush();
+
+
+    }
+    return $this->render('question/neww.html.twig',[
+        'sondage' => $sondage,
+        'question'=>$question,
+        'form' => $form->createView(),
+    ]);
+
+
+
     }
 
 

@@ -31,7 +31,7 @@ class Question
     private $sondage;
 
     /**
-     * @ORM\OneToMany(targetEntity=Option::class, mappedBy="question", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Option::class, mappedBy="question", cascade={"persist"})
      */
     private $options;
 
@@ -85,21 +85,19 @@ class Question
 
     public function addOption(Option $option): self
     {
-        if (!$this->options->contains($option)) {
             $this->options[] = $option;
             $option->setQuestion($this);
-        }
+
 
         return $this;
     }
 
     public function removeOption(Option $option): self
     {
-        if ($this->options->removeElement($option)) {
             // set the owning side to null (unless already changed)
             if ($option->getQuestion() === $this) {
                 $option->setQuestion(null);
-            }
+
         }
 
         return $this;

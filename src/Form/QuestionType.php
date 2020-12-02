@@ -4,9 +4,12 @@ namespace App\Form;
 
 use App\Entity\Question;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+
 
 class QuestionType extends AbstractType
 {
@@ -15,12 +18,27 @@ class QuestionType extends AbstractType
         $builder
 
             ->add('texte',TextType::class,['attr'=>
-        ['placeholder'=>'entrer le question du sondage',
+        ['placeholder'=>'entrer la question du sondage','label'=>'entrer la question',
             'style'=>'width:300px;margin-left:10px;height:25px;padding:12px'
 
             ,
             'class'=>'form-control']])
         ;
+        $builder->add('options', CollectionType::class, [
+            'entry_type' => OptionType::class,
+            'entry_options' => ['label' => false],
+            'by_reference'=>false,
+            'allow_add' => true,
+                'allow_delete'=>true,
+
+        ]
+
+        )
+        ->add('enregistrer',SubmitType::class,[
+            'attr'=>['class'=>'btn btn-success']
+        ])
+        ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

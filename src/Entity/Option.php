@@ -24,7 +24,7 @@ class Option
 
     /**
      * @ORM\ManyToOne(targetEntity=Question::class, inversedBy="options")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="question_id" , referencedColumnName="id" )
      */
     private $question;
 

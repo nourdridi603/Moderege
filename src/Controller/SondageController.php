@@ -39,7 +39,7 @@ class SondageController extends AbstractController
             $entityManager->persist($sondage);
             $entityManager->flush();
 
-            return $this->redirectToRoute('question_new',['id'=>$sondage->getId()]);
+            return $this->redirectToRoute('neww',['id'=>$sondage->getId()]);
         }
 
         return $this->render('sondage/new.html.twig', [
