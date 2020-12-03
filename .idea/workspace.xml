@@ -19,7 +19,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="438645af-934c-4b35-a76a-ca5e86409413" name="Default Changelist" comment="" />
+    <list default="true" id="438645af-934c-4b35-a76a-ca5e86409413" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/SujetController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/SujetType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/moderage4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/moderage4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201122123731.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20201202115745.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/QuestionType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/QuestionType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/question/neww.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/question/neww.html.twig" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -143,6 +159,8 @@
       <path value="$PROJECT_DIR$/vendor/twig/extra-bundle" />
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/vendor/vich/uploader-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1kYyOFnT1exUPpJWYb6omQO9gaz" />
@@ -154,12 +172,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/bootstrap-3.3.5-dist/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Form" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\mouna\moderage4\moderage4\src\Form" />
+      <recent name="C:\Users\mouna\moderage4\moderage4\templates" />
+      <recent name="C:\Users\mouna\moderage4\moderage4\src\Controller" />
       <recent name="C:\Users\mouna\moderage4\moderage4\bootstrap-3.3.5-dist\js" />
       <recent name="C:\Users\mouna\moderage4\moderage4" />
     </key>
@@ -180,7 +201,9 @@
       <workItem from="1606431550709" duration="1687000" />
       <workItem from="1606859424129" duration="26135000" />
       <workItem from="1606910045243" duration="3651000" />
-      <workItem from="1606919646719" duration="1251000" />
+      <workItem from="1606919646719" duration="5121000" />
+      <workItem from="1606935644786" duration="2037000" />
+      <workItem from="1606991844186" duration="6750000" />
     </task>
     <servers />
   </component>
@@ -204,9 +227,9 @@
       <screen x="-1366" y="0" width="1366" height="728" />
     </state>
     <state x="-953" y="119" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/-1366.0.1366.728/0.0.1366.728@-1366.0.1366.728" timestamp="1605909871999" />
-    <state x="-1020" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1606919301153">
+    <state x="-1020" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1606993068302">
       <screen x="-1366" y="0" width="1366" height="728" />
     </state>
-    <state x="-1020" y="49" width="672" height="678" key="search.everywhere.popup/-1366.0.1366.728/0.0.1366.728@-1366.0.1366.728" timestamp="1606919301153" />
+    <state x="-1020" y="49" width="672" height="678" key="search.everywhere.popup/-1366.0.1366.728/0.0.1366.728@-1366.0.1366.728" timestamp="1606993068302" />
   </component>
 </project>

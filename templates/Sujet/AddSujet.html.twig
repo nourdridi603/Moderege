@@ -1,0 +1,21 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{{ form_start(form) }}
+<br><br><br>
+<h1 style="color: white; margin-left: 20px;"> Créer votre sujet </h1>
+<br>
+<div class="container" style=" margin-left: 100px; width: 450px;">
+  {{ form_row(form.titre,{'attr':{'class':'form-control'}}) }}
+  {{ form_row(form.type,{'attr':{'class':'form-control'}}) }}
+  {{form_rest(form)}}
+  </div>
+
+<!-- ajout de nbr participants  et titre du sondage -->
+
+<button  class="btn btn-primary" style="background-color:white; color: #0A1538; border-color:#0A1538 ; margin-top: 100px; margin-left: 560px; ">Suivant</button>
+{{ form_end(form) }}
+
+{% endblock %}
+

@@ -1,0 +1,19 @@
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{{ form_start(form) }}
+<br>
+<h1 style="color: white; margin-left: 20px;"> Ajouter un type de rémunération : </h1><br>
+<div class="container" style=" margin-left: 100px; width: 450px; ">
+   <br>
+    <div>
+        {{ form_row(form.nom,{'attr':{'class':'form-control'}}) }} 
+        {{ form_row(form.offre,{'attr':{'class':'form-control'}}) }} 
+    <br><br>
+  <button  class="btn btn-primary" style="background-color:white; color: #0A1538; border-color:#0A1538  ">Ajouter</button>
+
+</div>
+{{ form_end(form) }}
+{% endblock %}

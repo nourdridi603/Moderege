@@ -18,8 +18,7 @@ class QuestionType extends AbstractType
         $builder
 
             ->add('texte',TextType::class,['attr'=>
-        ['placeholder'=>'entrer la question du sondage','label'=>'entrer la question',
-            'style'=>'width:300px;margin-left:10px;height:25px;padding:12px'
+        ['placeholder'=>'entrer la question du sondage'
 
             ,
             'class'=>'form-control']])
