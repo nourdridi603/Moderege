@@ -11,9 +11,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Form\SujetType ;
 use App\Entity\Sujet;
 use App\Repository\SujetRepository;
- /**
-* @Route("/sujet", name="sujet")
-*/
+ 
+
+
 class SujetController extends AbstractController
 {
     private $s;
@@ -22,7 +22,7 @@ class SujetController extends AbstractController
         $this->s=$s;
         $this->em=$em;
     }
-   
+  
     public function index(): Response
     {
         return $this->render('sujet/index.html.twig', [
@@ -40,7 +40,7 @@ class SujetController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
            $this->em->persist($sujet);
            $this->em->flush();
-           return $this->redirectToRoute("sujet");
+           return $this->redirectToRoute("new");
         }
         return $this->render('Sujet/AddSujet.html.twig',[
             'sujet'=>$sujet,
