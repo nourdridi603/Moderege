@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+{%  block body %}
+<br>
+    <h2 style="text-align: center; padding: 20px; color:  #0A1538;" >Inscription </h2>
+        <br>
+        <div style="margin-left: 100px;margin-right: 160px ;" >
+      
+       
+        <p style="color: #0A1538;">{{form_label(form.nom)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.nom)}}</p>
+
+        <p style="color: #0A1538;">{{form_label(form.prenom)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.prenom)}}</p>
+
+        <p style="color: #0A1538;">{{form_label(form.adresse)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.adresse)}}</p>
+
+        <p style="color: #0A1538;">{{form_label(form.email)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.email)}}</p>
+
+        <p style="color: #0A1538;">{{form_label(form.motDePasse)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.motDePasse)}}</p>
+
+        <p style="color: #0A1538;">{{form_label(form.cin)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.cin)}}</p>
+
+        <p style="color: #0A1538;">{{form_label(form.tel)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.tel)}}</p>
+
+        <p style="color: #0A1538;">{{form_label(form.dateNaissance)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.dateNaissance)}}</p>
+
+        <p style="color: #0A1538;">{{form_label(form.genre)}}</p>
+        <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.genre)}}</p>
+
+        <br><br><br>
+        <button class="btn btn-primary" style="margin-left: 70px" >Je suis Enqueteur</button>
+        <button style="margin-left: 270px; margin-top: -55px;" class="btn btn-primary">Je suis Sondé</button>
+      
+        
+        </br>
+      </div>
+   
+{% endblock %}

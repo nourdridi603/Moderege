@@ -24,6 +24,16 @@ class SondageController extends AbstractController
             'sondages' => $sondageRepository->findAll(),
         ]);
     }
+    /**
+     * @Route("/sondages",name="listesondage",methods="GET")
+     */
+    public function getSondages(){
+        $repo=$this->getDoctrine()->getRepository(Sondage::class);
+        $sondages=$repo->findAll();
+        return $this->render('sondage/liste_sondage.html.twig',[
+            'sondages'=>$sondages
+        ]);
+    }
 
     /**
      * @Route("/new", name="sondage_new", methods={"GET","POST"})

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sondage{% endblock %}
+
+{% block body %}
+
+    <br>
+    <h1 style="margin-left: 30px;">Nos Sondages </h1>
+    <br> <br>
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="row">Titre </th>
+                    <th scope="row">Nombre de participants </th>
+                    <th scope="row"  >Nombre de questions </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for sondage in sondages %}
+
+                <tr class="primary">
+                    <td>{{sondage.titre}} </td>
+                    <td>{{sondage.nbParticipant}}</td>
+                    <td> {{sondage.nbQuestion}} </td>
+                    <td> <a href="" > Répondre</a></td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+  
+    
+    </article>
+
+
+{% endblock %}

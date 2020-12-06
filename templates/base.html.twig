@@ -5,17 +5,62 @@
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+    <style> 
+        .a{
+            background-color: #c3cff1;
+            margin: 0;
+            padding: 0;
+            height: 50px;
+        }
+       
+        .c{
+            width: 800px;
+            align-content: center;
+            background-color:  #c3cff1;
+            margin-top: 30px ;
+            margin-left: 300px;
+            
+        }
+        img{
+            margin-left: 15px;
+            height: 50px;   
+        }
+         </style>
+        
 </head>
 <body>
-<div class="container">
-    {% block body %}{% endblock %}
-</div>
+
+
+<ul class="a">
+    <img src="https://scontent.ftun2-1.fna.fbcdn.net/v/t1.15752-9/129516733_1070227883401672_4190008357141565674_n.png?_nc_cat=102&ccb=2&_nc_sid=ae9488&_nc_ohc=gCqGsGF6InkAX_tf-3C&_nc_ht=scontent.ftun2-1.fna&oh=f41d891f6dcc6809fc2a88bb5f7fd105&oe=5FF425DC">
+        </ul>
+        <div class="c" >
+        {% block body %}{% endblock %}
+       </div>
 <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
 <script>
+
+        $("#myDiv").find("input").prop('disabled', true);
+        $('#chk').change(function(){
+            if($(this).is(':checked'))    
+            $("#myDiv").find("input").prop('disabled', false);
+            else    
+            $("#myDiv").find("input").prop('disabled', true);
+        })
+       
+       $("#myDiv1").find("input").prop('disabled', true);
+        $('#chk1').change(function(){
+            if($(this).is(':checked'))    
+            $("#myDiv1").find("input").prop('disabled', false);
+            else    
+            $("#myDiv1").find("input").prop('disabled', true);
+       })
+
+
+
     // this variable is the list in the dom, it's initiliazed when the document is ready
     var $collectionHolder;
     // the link which we click on to add new items

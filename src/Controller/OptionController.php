@@ -51,7 +51,7 @@ class OptionController extends AbstractController
             //$question=$_POST['question'];
 
 
-            return $this->redirectToRoute('sondage_index');
+            return $this->redirectToRoute('ChoixRemun');
         }
 
         return $this->render('option/new.html.twig', [
