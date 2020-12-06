@@ -3,10 +3,93 @@
 <head>
     <meta charset="UTF-8" />
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+
+
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
+    {% endblock %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+<style>
+    .neon-text {
+        $random-text: 'underlying wire';
+        position: relative;
+        $stroke-width: $extra-large * 0.05;
+        font-family: 'Pacifico', cursive;
+        text-transform: uppercase;
+        font-size: $extra-large;
+        color: lighten($pink, 25%);
+        -webkit-text-stroke-width: $stroke-width;
+        -webkit-text-stroke-color: lighten($pink, 5%);
+    @include center;
+        text-shadow: 0 0 40px lighten($pink, 5%),
+        0 0 40px lighten($pink, 5%),
+        0 0 40px lighten($pink, 5%);
+    &:after {
+         content: $random-text;
+         z-index: -1;
+         position: absolute;
+         color: transparent;
+         -webkit-text-stroke-width: $stroke-width;
+         -webkit-text-stroke-color: darken($pink, 40%);
+         top: -5%;
+         left: -0.5%;
+
+     }
+    }
+    .button1 {
+        height: 10px;
+        display: inline-block;
+        background: #a0a6b1;
+        color: #fff;
+        text-transform: uppercase;
+        padding: 15px 15px;
+        border-radius: 5px;
+        box-shadow: 0px 10px 1px -1px rgba(0, 0, 0, 0.7);
+        cursor: pointer;
+        -webkit-transition: all ease-out 300ms;
+    }
+    .button1:hover {
+        box-shadow: 0px 1px 1px -5px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .button2 {
+        height: 10px;
+        display: inline-block;
+        background: #a0a6b1;
+        color: #fff;
+        text-transform: uppercase;
+        padding: 15px 15px;
+        border-radius: 5px;
+        box-shadow: 0px 10px 1px -1px rgba(0, 0, 0, 0.7);
+        cursor: pointer;
+        -webkit-transition: all ease-out 300ms;
+    }
+    .button2:hover {
+        box-shadow: 0px 1px 1px -5px rgba(0, 0, 0, 0.2);
+
+    }
+    .button3 {
+        height: 10px;
+        display: inline-block;
+        background: #a0a6b1;
+        color: #fff;
+        text-transform: uppercase;
+        padding: 15px 15px;
+        border-radius: 5px;
+        box-shadow: 0px 10px 1px -1px rgba(0, 0, 0, 0.7);
+        cursor: pointer;
+        -webkit-transition: all ease-out 300ms;
+    }
+    .button3:hover {
+        box-shadow: 0px 1px 1px -5px rgba(0, 0, 0, 0.2);
+
+
+
+
+</style>
 </head>
+
 <body>
 <div class="container">
     {% block body %}{% endblock %}
