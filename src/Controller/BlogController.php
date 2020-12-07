@@ -93,6 +93,7 @@ public function new(Request $request,$id, SondageRepository $sondageRepository):
 
 
         $em->flush();
+        return $this->redirectToRoute('sondage_index');
 
 
     }

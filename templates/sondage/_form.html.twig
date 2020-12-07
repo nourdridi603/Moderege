@@ -1,20 +1,83 @@
 {% extends 'base.html.twig' %}
+  {% block stylesheets %}
+      <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+      <style>
+          .button1 {
+              height: 20px;
+              display: inline-block;
+              background: #4285f4;
+              color: #fff;
+              text-transform: uppercase;
+              padding: 20px 30px;
+              border-radius: 5px;
+              box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+              cursor: pointer;
+              -webkit-transition: all ease-in-out 300ms;
+              transition: all ease-in-out 300ms;
+          }
+          .button1:hover {
+              box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+              -webkit-transform: translate(0px, -10px) scale(1.2);
+              transform: translate(0px, -10px) scale(1.2);
+          }
+          .button2 {
+              height: 20px;
+
+              display: inline-block;
+              background: #ba3e57;
+              color: #fff;
+              text-transform: uppercase;
+              padding: 20px 30px;
+              border-radius: 5px;
+              box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+              cursor: pointer;
+              -webkit-transition: all ease-in-out 300ms;
+              transition: all ease-in-out 300ms;
+          }
+          .button2:hover {
+              box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+              -webkit-transform: translate(0px, -10px) scale(1.2);
+              transform: translate(0px, -10px) scale(1.2);
+          }
+          .button4 {
+              height: 20px;
+
+              display: inline-block;
+              background: #ba3e57;
+              color: #fff;
+              text-transform: uppercase;
+              padding: 20px 30px;
+              border-radius: 5px;
+              box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
+              cursor: pointer;
+              -webkit-transition: all ease-in-out 300ms;
+              transition: all ease-in-out 300ms;
+          }
+
+      </style>
+  {% endblock %}
 {%  block body %}
+    <div class="box">
 
-    <div style="background-color:#8FA0D3 ; margin-right: 200px;margin-left: 200px;margin-top: 200px">
+    <div style=" margin-right: 200px;margin-left: 200px;margin-top: 200px">
 
-    <h3 style="color: white; margin-left: 50px;padding: 20px" >Creation d'un sondage</h3>
-        <div style="margin-left: 400px " >
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-            </br>
-    <button class="SubmitType">{{ button_label|default('suivant') }}</button>
-            <button class="SubmitType" > <a style="color:black" href="{{ path('sondage_index') }}">annuler</a></button>
+        <h3 style="margin-right: 100px;margin-left: 100px;margin-top: 200px" class='neon-text'>Commencer à Creer votre Sondage !</h3>
+        <br/><br/>
 
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+<br/><br/>
+        <div style=" margin-right: 100px;margin-left: 100px">
+            <button class="button1">{{ button_label|default('suivant') }}</button>
+            <button class="button2" > <a style="color:black" href="{{ path('sondage_index') }}">annuler</a></button>
+        </div>
             {{ form_end(form) }}
-        </br>
+            </br>
 
 
         </div>
+    </div>
     </div>
 {% endblock %}

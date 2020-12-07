@@ -13,12 +13,18 @@ class OptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('contenue', TextType::class,['attr'=>
-            ['placeholder'=>'entrer le titre du sondage',
-                'style'=>'width:300px;margin-left:10px;height:25px;padding:12px'
-
-                ,
-                'class'=>'form-control']])
+        ->add('contenue', TextType::class,[
+            'label'=>'Entrez Les Options',
+            'attr'=>
+                ['placeholder'=>'entrez votre option',
+                    'style'=>'border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:50%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:black;'
+                ]])
 
 
             

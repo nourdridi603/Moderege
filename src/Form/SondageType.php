@@ -16,26 +16,38 @@ class SondageType extends AbstractType
     {
         $builder
 
-            ->add('titre',TextType::class,['attr'=>
-            ['placeholder'=>'entrer le titre du sondage'
-                ,
-                'style'=>'width:300px;margin-left:10px;height:25px;padding:12px'
-                ,
-
-                'class'=>'form-control']
+            ->add('titre',TextType::class,[
+                'label'=>'Entrez le titre du sondage',
+                'attr'=>
+                    ['placeholder'=>'entrer le titre du sondage',
+                        'style'=>'border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:50%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:black;'
+                    ]
             ])
-            ->add('nbParticipant',TextType::class,['attr'=>
-                ['placeholder'=>'entrer le nombre des participants maximal'
-                    ,
-                    'style'=>'width:300px;margin-left:10px;height:25px;padding:12px'
-                    ,
+            ->add('nbParticipant',TextType::class,[
 
-                    'class'=>'form-control']
+                'label'=>'Entrez le nombre de participant',
+                'attr'=>
+                    ['placeholder'=>'entrer le nombre des participants maximal'
+                        ,
+                        'style'=>'border:0;
+  border-bottom:1px solid #555;  
+  background:transparent;
+  width:50%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:black;'
+                    ]
 
             ])
             //->add('nbQuestion')
-           // ->add('nbReponse')
-            ;
+            // ->add('nbReponse')
+        ;
 
     }
 

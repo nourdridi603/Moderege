@@ -100,6 +100,7 @@ class Sondage
         $this->nbReponse = $nbReponse;
 
         return $this;
+
     }
 
     /**
@@ -112,12 +113,13 @@ class Sondage
 
     public function addQuestion(Question $question): self
     {
-        if (!$this->Questions->contains($question)) {
-            $this->Questions[] = $question;
-            $question->setSondage($this);
-        }
+        $this->questions[] = $question;
+        $question->setSondage($this);
+
 
         return $this;
+
+
     }
     public function __toString(){
         // to show the name of the Category in the select
