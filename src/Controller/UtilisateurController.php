@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Utilisateur;
 use App\Entity\Enqueteur;
 use App\Form\UtilisateurType;
-use App\Form\ENqueteurType;
+use App\Form\EnqueteurType;
 use App\Repository\UtilisateurRepository;
 use App\Repository\EnqueteurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,7 +27,7 @@ class UtilisateurController extends AbstractController
     }
 
     /**
-     * @Route("/utilisateur/inscription",name="addutilisaetur")
+     * @Route("/utilisateur/inscription",name="addUtilisateur")
      */
     public function inscription(Request $req){
         $utilisateur=new Utilisateur();
@@ -37,19 +37,20 @@ class UtilisateurController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($utilisateur);
             $entityManager->flush();
-
            // return $this->redirectToRoute('inscription',['id'=>$utilisateur->getId()]);
         }
         if($form->isSubmitted() && $form->isValid() && $form->get('save_enqueteur')->isClicked()){
             return $this->redirectToRoute('addEnqueteur',['id'=>$utilisateur]);
-
         }
-
+        if($form->isSubmitted() && $form->isValid() && $form->get('save_sonde')->isClicked()){
+            return $this->redirectToRoute('addUtilisateur');
+        }        
         return $this->render('Utilisateur/inscription.html.twig', [
-            'sondage' => $utilisateur,
             'form' => $form->createView(),
             
         ]);
+
+       
     }
 
     /**
@@ -103,7 +104,7 @@ public function updateUtilisateur(Utilisateur $utilisateur,Request $req){
  * @Route("enqueteur/{id}",name="updateEnqueteur")
  */
 public function updateEnqueteur(Enqueteur $enqueteur,Request $req){
-    $form = $this->createForm(EqueteurType::class, $enqueteur);
+    $form = $this->createForm(EnqueteurType::class, $enqueteur);
         $form->handleRequest($req);
 
         if ($form->isSubmitted() && $form->isValid()) {
