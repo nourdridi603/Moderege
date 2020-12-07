@@ -8,12 +8,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EnqueteurController extends AbstractController
 {
-   /**
+   
+    /**
      * @Route("/enqueteur/contoller", name="enqueteur_contoller")
      */
     public function index(): Response
     {
-        return $this->render('enqueteur_contoller/index.html.twig', [
+        return $this->render('Enqueteur/index.html.twig', [
             'controller_name' => 'EnqueteurContollerController',
         ]);
     }
@@ -21,7 +22,7 @@ class EnqueteurController extends AbstractController
      * @Route("/utilisateur/inscription/{id}",name="addEnqueteur")
      */
     public function ajoutEnqueteur($id,Request $req){
-        $this->render('enqueteur_contoller/inscription.html.twig',['em'=>$id->getId()]);
+        $this->render('Enqueteur/inscription.html.twig',['em'=>$id->getId()]);
     }
 }
 

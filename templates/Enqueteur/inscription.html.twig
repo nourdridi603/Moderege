@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{%  block body %}
+
+    
+  <h2 style="text-align: center; padding: 20px; color:  #0A1538;" >Informations sur votre sociéte ...</h2>
+        <br><br>
+        <div style="margin-left: 100px;margin-right: 160px ;" >
+{{form_start(form)}}
+
+{% if form.nom != null %}
+{% do form.nom.setRendered() %}
+{% do form.prenom.setRendered() %}
+{% do form.dateNaissance.setRendered() %}
+{% do form.genre.setRendered() %}
+{% do form.tel.setRendered() %}
+{% do form.motDePasse.setRendered() %}
+{% do form.email.setRendered() %}
+{% do form.cin.setRendered() %}
+{% endif %}
+    <p style="color: #0A1538;">{{form_label(form.matriculeFiscale)}}</p>
+    <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.matriculeFiscale)}}</p>
+
+    <p style="color: #0A1538;">{{form_label(form.registreDesCommeerces)}}</p>
+    <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.registreDesCommeerces)}}</p>
+
+    <p style="color: #0A1538;">{{form_label(form.adresseSociete)}}</p>
+    <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.adresseSociete)}}</p>
+
+    
+    <p style="color: #0A1538;">{{form_label(form.logo)}}</p>
+    <p style="margin-left: 290px;margin-top: -20px;">{{form_widget(form.logo)}}</p>
+
+    <p style="margin-left: 260px;margin-top:60px;">{{form_widget(form.submit,{ 'attr': {'class': 'btn btn-primary'} })}}</p>
+
+{{form_end(form)}}
+<br><br>
+        </div>
+    </div>
+{% endblock %}

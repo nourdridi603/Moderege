@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Sondage;
+use App\Entity\Question;
 use App\Form\SondageType;
 use App\Repository\SondageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,8 +31,20 @@ class SondageController extends AbstractController
     public function getSondages(){
         $repo=$this->getDoctrine()->getRepository(Sondage::class);
         $sondages=$repo->findAll();
+        
+        
+        foreach($sondages as $son)
+        {    
+            $em1=$this->getDoctrine()->getManager();
+            $NbrSondage =count($em1->getRepository(Question::class)->findByNbrSondage($son->getId()));
+            $son->setNbQuestion($NbrSondage );
+        }
+        
+
+
         return $this->render('sondage/liste_sondage.html.twig',[
             'sondages'=>$sondages
+            
         ]);
     }
 

@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 class UtilisateurType extends AbstractType
 {
@@ -32,11 +33,17 @@ class UtilisateurType extends AbstractType
                  'format' => 'yyyy-MM-dd'
             ], ['label'=>'Date de naissance :  '])
             ->add('genre',ChoiceType::class,array(
-                'choices'=>array('Male'=>true,'Femelle'=>false)
+                'choices'=>array('Homme'=>true,'Femme'=>false)
             ),['label'=>'Genre :  '])
+            ->add('save_enqueteur', SubmitType::class,[
+                'label'=>'en tant que enqueteur'
+            ])
+            ->add('save_sonde', SubmitType::class,[
+                'label'=>'en tant que sonde'
+            ])
+            ->add('photo',FileType::class, array('data_class' => null))
             
-           
-
+            
         ;
     }
 

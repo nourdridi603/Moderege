@@ -10,19 +10,19 @@
         <table class="table table-hover">
             <thead>
                 <tr class="table-primary">
-                    <th scope="row">Titre </th>
-                    <th scope="row">Nombre de participants </th>
-                    <th scope="row"  >Nombre de questions </th>
+                    <th scope="row" style="text-align:center;">Titre </th>
+                    <th scope="row" style="text-align:center;">Nombre de participants </th>
+                    <th scope="row" style="text-align:center;" >Nombre de questions </th>
                 </tr>
             </thead>
             <tbody>
                 {% for sondage in sondages %}
 
                 <tr class="primary">
-                    <td>{{sondage.titre}} </td>
-                    <td>{{sondage.nbParticipant}}</td>
-                    <td> {{sondage.nbQuestion}} </td>
-                    <td> <a href="" > Répondre</a></td>
+                    <td style="text-align:center;">{{sondage.titre}} </td>
+                    <td style="text-align:center;">{{sondage.nbParticipant}}</td>
+                    <td style="text-align:center;"> {{sondage.nbQuestion}}  </td>
+                    <td style="text-align:center;"> <button class="btn btn-primary"> Répondre </button></td>
                 </tr>
 
                 {% endfor %}
@@ -31,6 +31,6 @@
   
     
     </article>
-
+<br><br><br>
 
 {% endblock %}

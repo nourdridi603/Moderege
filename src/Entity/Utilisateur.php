@@ -62,6 +62,11 @@ class Utilisateur
      */
     private $cin;
 
+    /**
+     * @ORM\Column(type="blob", nullable=true)
+     */
+    private $photo;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -174,9 +179,21 @@ class Utilisateur
 
         return $this;
     }
+
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto($photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
     public function __toString()
-{
-    return (string) $this->getid();
-}
+    {
+        return (string) $this->getid();
+    }
 
 }

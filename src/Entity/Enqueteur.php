@@ -67,6 +67,16 @@ class Enqueteur
      */
     private $logo;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $genre;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $cin;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -191,6 +201,32 @@ class Enqueteur
 
         return $this;
     }
+
+    public function getGenre(): ?bool
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(bool $genre): self
+    {
+        $this->genre = $genre;
+
+        return $this;
+    }
+    
+
+    public function getCin(): ?int
+    {
+        return $this->cin;
+    }
+
+    public function setCin(int $cin): self
+    {
+        $this->cin = $cin;
+
+        return $this;
+    }
+    
     public function __toString()
     {
         return (string) $this->getid();
