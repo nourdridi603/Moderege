@@ -119,6 +119,66 @@ public function updateEnqueteur(Enqueteur $enqueteur,Request $req){
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/sondage_repondu/{id}",name="listeSondageRepondu")
+     */
+    public function listSondageRepondu(Utilisateur $utilisateur){
+        $reponses=$utilisateur->getReponses();
+        //$i=0;
+        $sondages=[];
+        if($reponses!= null){
+            $i=0;
+            $longeur=\count($reponses);
+            while($i<$longeur){
+                if($reponses[$i]->getQuestionLogique()!=null){
+                    $sondage=$reponses[$i]->getQuestionLogique()->getSondage();
+                    if($sondages==null){
+                        array_push($sondages,$sondage);
+                    }
+                    else{
+                        $j=0;
+                        $longeur2=\count($sondages);
+                        $test=false;
+                        while($j<$longeur2){
+                            if($sondages[$j]->getTitre()==$sondage->getTitre()){
+                                $test=true;
+                            }
+                            $j++;
+                        }
+                        if($test==false){
+                            array_push($sondages,$sondage);
+                        }
+                    }
+                }
+                else{
+                    /** */
+                    $sondage=$reponses[$i]->getQuestionMultiChoix()->getSondage();
+                    if($sondages==null){
+                        array_push($sondages,$sondage);
+                    }
+                    else{
+                        $j=0;
+                        $longeur2=\count($sondages);
+                        $test=false;
+                        while($j<$longeur2){
+                            if($sondages[$j]->getTitre()==$sondage->getTitre()){
+                                $test=true;
+                            }
+                            $j++;
+                        }
+                        if($test==false){
+                            array_push($sondages,$sondage);
+                        }
+                    }
+                }
+                $i++;               
+        }
+        return $this->render('Utilisateur/sondagerepondu.html.twig',['sondages'=>$sondages]);
+    }
+    
+    
+    
+    }
 
 }
 

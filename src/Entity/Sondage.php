@@ -44,9 +44,15 @@ class Sondage
      */
     private $Questions;
 
+    /**
+     * @ORM\OneToMany(targetEntity=QuestionChoixMultiples::class, mappedBy="sondage")
+     */
+    private $questionChoixMultiples;
+
     public function __construct()
     {
         $this->Questions = new ArrayCollection();
+        $this->questionChoixMultiples = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,6 +140,36 @@ class Sondage
             // set the owning side to null (unless already changed)
             if ($question->getSondage() === $this) {
                 $question->setSondage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|QuestionChoixMultiples[]
+     */
+    public function getQuestionChoixMultiples(): Collection
+    {
+        return $this->questionChoixMultiples;
+    }
+
+    public function addQuestionChoixMultiple(QuestionChoixMultiples $questionChoixMultiple): self
+    {
+        if (!$this->questionChoixMultiples->contains($questionChoixMultiple)) {
+            $this->questionChoixMultiples[] = $questionChoixMultiple;
+            $questionChoixMultiple->setSondage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionChoixMultiple(QuestionChoixMultiples $questionChoixMultiple): self
+    {
+        if ($this->questionChoixMultiples->removeElement($questionChoixMultiple)) {
+            // set the owning side to null (unless already changed)
+            if ($questionChoixMultiple->getSondage() === $this) {
+                $questionChoixMultiple->setSondage(null);
             }
         }
 

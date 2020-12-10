@@ -35,9 +35,15 @@ class Question
      */
     private $options;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reponse::class, mappedBy="questionLogique")
+     */
+    private $reponses;
+
     public function __construct()
     {
         $this->options = new ArrayCollection();
+        $this->reponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,6 +104,36 @@ class Question
             if ($option->getQuestion() === $this) {
                 $option->setQuestion(null);
 
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reponse[]
+     */
+    public function getReponses(): Collection
+    {
+        return $this->reponses;
+    }
+
+    public function addReponse(Reponse $reponse): self
+    {
+        if (!$this->reponses->contains($reponse)) {
+            $this->reponses[] = $reponse;
+            $reponse->setQuestionLogique($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReponse(Reponse $reponse): self
+    {
+        if ($this->reponses->removeElement($reponse)) {
+            // set the owning side to null (unless already changed)
+            if ($reponse->getQuestionLogique() === $this) {
+                $reponse->setQuestionLogique(null);
+            }
         }
 
         return $this;
