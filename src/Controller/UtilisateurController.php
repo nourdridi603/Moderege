@@ -179,7 +179,13 @@ public function updateEnqueteur(Enqueteur $enqueteur,Request $req){
     
     
     }
+    /**
+     * @Route("sondage/reponse/{id}",name="")
+     */
+    public function consulterReponse(Enqueteur $enqueteur){
+        $sondages=$enqueteur->getSondages();
+       return $this->render("Enqueteur/mesSondage.html.twig",['sondages'=>$sondages]);
+    }
+
 
 }
-
-

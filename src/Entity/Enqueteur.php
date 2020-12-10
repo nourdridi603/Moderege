@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EnqueteurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -76,6 +78,16 @@ class Enqueteur
      * @ORM\Column(type="integer")
      */
     private $cin;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Sondage::class, mappedBy="enqueteur")
+     */
+    private $sondages;
+
+    public function __construct()
+    {
+        $this->sondages = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -230,5 +242,35 @@ class Enqueteur
     public function __toString()
     {
         return (string) $this->getid();
+    }
+
+    /**
+     * @return Collection|Sondage[]
+     */
+    public function getSondages(): Collection
+    {
+        return $this->sondages;
+    }
+
+    public function addSondage(Sondage $sondage): self
+    {
+        if (!$this->sondages->contains($sondage)) {
+            $this->sondages[] = $sondage;
+            $sondage->setEnqueteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSondage(Sondage $sondage): self
+    {
+        if ($this->sondages->removeElement($sondage)) {
+            // set the owning side to null (unless already changed)
+            if ($sondage->getEnqueteur() === $this) {
+                $sondage->setEnqueteur(null);
+            }
+        }
+
+        return $this;
     }
 }

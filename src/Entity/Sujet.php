@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SujetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -47,6 +49,16 @@ class Sujet
      * @var \DateTime
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Sondage::class, mappedBy="sujet")
+     */
+    private $sondages;
+
+    public function __construct()
+    {
+        $this->sondages = new ArrayCollection();
+    }
 
     public function setImageFile(File $image = null)
     {
@@ -103,6 +115,36 @@ class Sujet
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sondage[]
+     */
+    public function getSondages(): Collection
+    {
+        return $this->sondages;
+    }
+
+    public function addSondage(Sondage $sondage): self
+    {
+        if (!$this->sondages->contains($sondage)) {
+            $this->sondages[] = $sondage;
+            $sondage->setSujet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSondage(Sondage $sondage): self
+    {
+        if ($this->sondages->removeElement($sondage)) {
+            // set the owning side to null (unless already changed)
+            if ($sondage->getSujet() === $this) {
+                $sondage->setSujet(null);
+            }
+        }
 
         return $this;
     }

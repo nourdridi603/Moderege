@@ -49,6 +49,18 @@ class Sondage
      */
     private $questionChoixMultiples;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Enqueteur::class, inversedBy="sondages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $enqueteur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Sujet::class, inversedBy="sondages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $sujet;
+
     public function __construct()
     {
         $this->Questions = new ArrayCollection();
@@ -172,6 +184,30 @@ class Sondage
                 $questionChoixMultiple->setSondage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getEnqueteur(): ?Enqueteur
+    {
+        return $this->enqueteur;
+    }
+
+    public function setEnqueteur(?Enqueteur $enqueteur): self
+    {
+        $this->enqueteur = $enqueteur;
+
+        return $this;
+    }
+
+    public function getSujet(): ?Sujet
+    {
+        return $this->sujet;
+    }
+
+    public function setSujet(?Sujet $sujet): self
+    {
+        $this->sujet = $sujet;
 
         return $this;
     }
