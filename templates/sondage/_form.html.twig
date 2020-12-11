@@ -22,11 +22,11 @@
               -webkit-transform: translate(0px, -10px) scale(1.2);
               transform: translate(0px, -10px) scale(1.2);
           }
-          .button2 {
+          .button5 {
               height: 20px;
 
               display: inline-block;
-              background: #ba3e57;
+              background: #3e8fba;
               color: #fff;
               text-transform: uppercase;
               padding: 20px 30px;
@@ -36,7 +36,7 @@
               -webkit-transition: all ease-in-out 300ms;
               transition: all ease-in-out 300ms;
           }
-          .button2:hover {
+          .button5:hover {
               box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
               -webkit-transform: translate(0px, -10px) scale(1.2);
               transform: translate(0px, -10px) scale(1.2);
@@ -55,6 +55,11 @@
               -webkit-transition: all ease-in-out 300ms;
               transition: all ease-in-out 300ms;
           }
+          .button4:hover {
+              box-shadow: 0px 37px 20px -20px rgba(0, 0, 0, 0.2);
+              -webkit-transform: translate(0px, -10px) scale(1.2);
+              transform: translate(0px, -10px) scale(1.2);
+          }
 
       </style>
   {% endblock %}
@@ -70,8 +75,8 @@
             {{ form_widget(form) }}
 <br/><br/>
         <div style=" margin-right: 100px;margin-left: 100px">
-            <button class="button1">{{ button_label|default('suivant') }}</button>
-            <button class="button2" > <a style="color:black" href="{{ path('sondage_index') }}">annuler</a></button>
+            <button class="button4">{{ button_label|default('suivant') }}</button>
+            <button class="button5" > <a style="color:black" href="{{ path('sondage_index') }}">annuler</a></button>
         </div>
             {{ form_end(form) }}
             </br>

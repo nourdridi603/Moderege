@@ -93,8 +93,11 @@ public function new(Request $request,$id, SondageRepository $sondageRepository):
 
 
         $em->flush();
-        return $this->redirectToRoute('sondage_index');
-
+        return $this->render('question/neww.html.twig',[
+            'sondage' => $sondage,
+            'question'=>$question,
+            'form' => $form->createView(),
+        ]);
 
     }
     return $this->render('question/neww.html.twig',[
