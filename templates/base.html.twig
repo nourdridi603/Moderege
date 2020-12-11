@@ -2,14 +2,32 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}
-
-
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}">
-    {% endblock %}
+    <title>{% block title %}Moderage {% endblock %}</title>
+   
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+
 <style>
+.a{
+            background-color: #c3cff1;
+            margin: 0;
+            padding: 0;
+            height: 50px;
+        }
+       
+        .c{
+            width: 800px;
+            align-content: center;
+            background-color:  #c3cff1;
+            margin-top: 30px ;
+            margin-left: 300px;
+            
+        }
+        img{
+            margin-left: 15px;
+            height: 50px;   
+        }
     .neon-text {
         $random-text: 'underlying wire';
         position: relative;
@@ -88,17 +106,40 @@
 
 
 </style>
+
 </head>
 
 <body>
-<div class="container">
-    {% block body %}{% endblock %}
-</div>
+
+
+
+       
+        {% block body %}{% endblock %}
+       
 <script
         src="https://code.jquery.com/jquery-2.2.4.min.js"
         integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
 <script>
+
+        $("#myDiv").find("input").prop('disabled', true);
+        $('#chk').change(function(){
+            if($(this).is(':checked'))    
+            $("#myDiv").find("input").prop('disabled', false);
+            else    
+            $("#myDiv").find("input").prop('disabled', true);
+        })
+       
+       $("#myDiv1").find("input").prop('disabled', true);
+        $('#chk1').change(function(){
+            if($(this).is(':checked'))    
+            $("#myDiv1").find("input").prop('disabled', false);
+            else    
+            $("#myDiv1").find("input").prop('disabled', true);
+       })
+
+
+
     // this variable is the list in the dom, it's initiliazed when the document is ready
     var $collectionHolder;
     // the link which we click on to add new items

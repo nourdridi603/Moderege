@@ -44,9 +44,27 @@ class Sondage
      */
     private $Questions;
 
+    /**
+     * @ORM\OneToMany(targetEntity=QuestionChoixMultiples::class, mappedBy="sondage")
+     */
+    private $questionChoixMultiples;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Enqueteur::class, inversedBy="sondages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $enqueteur;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Sujet::class, inversedBy="sondages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $sujet;
+
     public function __construct()
     {
         $this->Questions = new ArrayCollection();
+        $this->questionChoixMultiples = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,6 +154,60 @@ class Sondage
                 $question->setSondage(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|QuestionChoixMultiples[]
+     */
+    public function getQuestionChoixMultiples(): Collection
+    {
+        return $this->questionChoixMultiples;
+    }
+
+    public function addQuestionChoixMultiple(QuestionChoixMultiples $questionChoixMultiple): self
+    {
+        if (!$this->questionChoixMultiples->contains($questionChoixMultiple)) {
+            $this->questionChoixMultiples[] = $questionChoixMultiple;
+            $questionChoixMultiple->setSondage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeQuestionChoixMultiple(QuestionChoixMultiples $questionChoixMultiple): self
+    {
+        if ($this->questionChoixMultiples->removeElement($questionChoixMultiple)) {
+            // set the owning side to null (unless already changed)
+            if ($questionChoixMultiple->getSondage() === $this) {
+                $questionChoixMultiple->setSondage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getEnqueteur(): ?Enqueteur
+    {
+        return $this->enqueteur;
+    }
+
+    public function setEnqueteur(?Enqueteur $enqueteur): self
+    {
+        $this->enqueteur = $enqueteur;
+
+        return $this;
+    }
+
+    public function getSujet(): ?Sujet
+    {
+        return $this->sujet;
+    }
+
+    public function setSujet(?Sujet $sujet): self
+    {
+        $this->sujet = $sujet;
 
         return $this;
     }

@@ -11,7 +11,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Form\SujetType ;
 use App\Entity\Sujet;
 use App\Repository\SujetRepository;
- 
+
+/**
+ * @Route("/sujet")
+ */
 
 
 class SujetController extends AbstractController
@@ -40,7 +43,7 @@ class SujetController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
            $this->em->persist($sujet);
            $this->em->flush();
-           return $this->redirectToRoute("new");
+           return $this->redirectToRoute("sondage_new");
         }
         return $this->render('Sujet/AddSujet.html.twig',[
             'sujet'=>$sujet,

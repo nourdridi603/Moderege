@@ -2,7 +2,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+<ul class="a">
+    <img src="https://scontent.ftun2-1.fna.fbcdn.net/v/t1.15752-9/129516733_1070227883401672_4190008357141565674_n.png?_nc_cat=102&ccb=2&_nc_sid=ae9488&_nc_ohc=gCqGsGF6InkAX_tf-3C&_nc_ht=scontent.ftun2-1.fna&oh=f41d891f6dcc6809fc2a88bb5f7fd105&oe=5FF425DC">
+</ul>
+ <div style="width: 1300px;
+            height: 500px;
+            align-content: center;
+            background-color:  #c3cff1;
+            margin-top: 30px ;
+            margin-left: 30px;" >
 {{ form_start(form) }}
 <br>
 <h1 style=" margin-left: 20px;"> Choisir un type de rémunération : </h1><br>
@@ -39,5 +47,5 @@
 {{ form_end(form1) }}
 
 <button  class="btn btn-primary" style="background-color:white; color: #0A1538; border-color:#0A1538 ; margin-top: 40px; margin-left: 1000px;"><a  href="{{ path('AjoutRemun')}}" style="color: #0A1538;">Ajouter un type</a></button>
-
+</div>
 {% endblock %}
