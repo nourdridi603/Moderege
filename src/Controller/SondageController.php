@@ -6,6 +6,7 @@ use App\Entity\Sondage;
 use App\Entity\Question;
 use App\Form\SondageType;
 use App\Repository\SondageRepository;
+use App\Repository\SujetRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -50,16 +51,18 @@ class SondageController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="sondage_new", methods={"GET","POST"})
+     * @Route("/new/{id}", name="sondage_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new($id,Request $request,SujetRepository $sujetRepository): Response
     {
         $sondage = new Sondage();
         $form = $this->createForm(SondageType::class, $sondage);
         $form->handleRequest($request);
+        $sujet=$sujetRepository->find($id);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $sondage->setSujet($sujet);
             $entityManager->persist($sondage);
             $entityManager->flush();
 

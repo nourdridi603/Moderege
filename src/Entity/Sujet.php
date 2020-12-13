@@ -22,10 +22,7 @@ class Sujet
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $titre;
+  
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -83,18 +80,7 @@ class Sujet
         return $this->id;
     }
 
-    public function getTitre(): ?string
-    {
-        return $this->titre;
-    }
-
-    public function setTitre(string $titre): self
-    {
-        $this->titre = $titre;
-
-        return $this;
-    }
-
+   
     public function getType(): ?string
     {
         return $this->type;

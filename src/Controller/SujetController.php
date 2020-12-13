@@ -43,7 +43,7 @@ class SujetController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
            $this->em->persist($sujet);
            $this->em->flush();
-           return $this->redirectToRoute("sondage_new");
+           return $this->redirectToRoute("sondage_new",['id'=>$sujet->getId()]);
         }
         return $this->render('Sujet/AddSujet.html.twig',[
             'sujet'=>$sujet,
