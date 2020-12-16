@@ -23,6 +23,47 @@ class Enqueteur
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
+    /**
+     * @ORM\ManyToOne(targetEntity="Utilisateur",inversedBy="enqueteurs")
+     */
+    private $utilisateur;
+    /**
+     * @ORM\ManyToOne(targetEntity="Conversation",inversedBy="Enqueteurs")
+     */
+    private $conversation;
+
+    /**
+     * @return mixed
+     */
+    public function getConversation()
+    {
+        return $this->conversation;
+    }
+
+    /**
+     * @param mixed $conversation
+     */
+    public function setConversation($conversation): void
+    {
+        $this->conversation = $conversation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUtilisateur()
+    {
+        return $this->utilisateur;
+    }
+
+    /**
+     * @param mixed $utilisateur
+     */
+    public function setUtilisateur($utilisateur): void
+    {
+        $this->utilisateur = $utilisateur;
+    }
+
 
     /**
      * @ORM\Column(type="string", length=255)

@@ -18,6 +18,15 @@ class Utilisateur
      * @ORM\Column(type="integer")
      */
     private $id;
+    /**
+     * @ORM\OneToMany(targetEntity="Enqueteur",mappedBy="utilisateur")
+     */
+    private $enqueteurs;
+    /**
+     * @ORM\OneToMany(targetEntity="Message",mappedBy="utilisateurs")
+     */
+
+    private $messages;
 
     /**
      * @ORM\Column(type="string", length=255)
