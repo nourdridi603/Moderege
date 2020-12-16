@@ -6,11 +6,16 @@ use App\Repository\UtilisateurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UtilisateurRepository::class)
+ * @UniqueEntity(
+ * fields={"email"},
+ * message="L'email que vous avez indiqué est déjà utilisé !")
  */
-class Utilisateur
+class Utilisateur implements UserInterface
 {
     /**
      * @ORM\Id
@@ -18,15 +23,6 @@ class Utilisateur
      * @ORM\Column(type="integer")
      */
     private $id;
-    /**
-     * @ORM\OneToMany(targetEntity="Enqueteur",mappedBy="utilisateur")
-     */
-    private $enqueteurs;
-    /**
-     * @ORM\OneToMany(targetEntity="Message",mappedBy="utilisateurs")
-     */
-
-    private $messages;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -245,6 +241,36 @@ class Utilisateur
         }
 
         return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->nom = $username;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->motDePasse;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->motDePasse = $password;
+
+        return $this;
+    }
+
+    public function eraseCredentials(){}
+    public function getSalt(){}
+    public function getRoles(){
+        return ['ROLE_USER'];
     }
 
 }

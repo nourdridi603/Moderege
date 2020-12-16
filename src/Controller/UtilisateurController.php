@@ -187,5 +187,29 @@ public function updateEnqueteur(Enqueteur $enqueteur,Request $req){
        return $this->render("Enqueteur/mesSondage.html.twig",['sondages'=>$sondages]);
     }
 
+/**
+     * @Route("/connexion",name="login")
+     */
+    public function login(){
+        return $this->render("Utilisateur/login.html.twig");
+    }
+    /**
+     * @Route("/logoutUser",name="logout")
+     */
+    public function logout(){
+        return $this->redirectToRoute("login");
+    }
+ /**
+     * @Route("/connexion_enqueteur",name="loginE")
+     */
+    public function loginEnqueteur(){
+        return $this->render("Enqueteur/login.html.twig");
+    }
+    /**
+     * @Route("/logoutEnqueteur",name="logoutE")
+     */
+    public function logoutEnqueteur(){
+        return $this->redirectToRoute("loginE");
+    }
 
 }

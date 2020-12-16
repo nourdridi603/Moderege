@@ -6,11 +6,16 @@ use App\Repository\EnqueteurRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=EnqueteurRepository::class)
+ * @UniqueEntity(
+ * fields={"email"},
+ * message="L'email que vous avez indiqué est déjà utilisé !")
  */
-class Enqueteur
+class Enqueteur implements UserInterface
 {
     /**
      * @ORM\Id
@@ -23,47 +28,6 @@ class Enqueteur
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
-    /**
-     * @ORM\ManyToOne(targetEntity="Utilisateur",inversedBy="enqueteurs")
-     */
-    private $utilisateur;
-    /**
-     * @ORM\ManyToOne(targetEntity="Conversation",inversedBy="Enqueteurs")
-     */
-    private $conversation;
-
-    /**
-     * @return mixed
-     */
-    public function getConversation()
-    {
-        return $this->conversation;
-    }
-
-    /**
-     * @param mixed $conversation
-     */
-    public function setConversation($conversation): void
-    {
-        $this->conversation = $conversation;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUtilisateur()
-    {
-        return $this->utilisateur;
-    }
-
-    /**
-     * @param mixed $utilisateur
-     */
-    public function setUtilisateur($utilisateur): void
-    {
-        $this->utilisateur = $utilisateur;
-    }
-
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -313,5 +277,35 @@ class Enqueteur
         }
 
         return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->nom = $username;
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->motDePasse;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->motDePasse = $password;
+
+        return $this;
+    }
+
+    public function eraseCredentials(){}
+    public function getSalt(){}
+    public function getRoles(){
+        return ['ROLE_USER'];
     }
 }
