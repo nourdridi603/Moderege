@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class UtilisateurController extends AbstractController
@@ -29,11 +30,13 @@ class UtilisateurController extends AbstractController
     /**
      * @Route("/utilisateur/inscription",name="addUtilisateur")
      */
-    public function inscription(Request $req){
+    public function inscription(Request $req,UserPasswordEncoderInterface $encoder){
         $utilisateur=new Utilisateur();
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($req);
         if ($form->isSubmitted() && $form->isValid()) {
+            $encoded = $encoder->encodePassword($utilisateur, $utilisateur->getPassword());
+            $utilisateur->setPassword($encoded);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($utilisateur);
             $entityManager->flush();
@@ -191,6 +194,8 @@ public function updateEnqueteur(Enqueteur $enqueteur,Request $req){
      * @Route("/connexion",name="login")
      */
     public function login(){
+       
+
         return $this->render("Utilisateur/login.html.twig");
     }
     /**

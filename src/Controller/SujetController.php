@@ -12,6 +12,8 @@ use App\Form\SujetType ;
 use App\Entity\Sujet;
 use App\Repository\SujetRepository;
 
+
+
 /**
  * @Route("/sujet")
  */
@@ -33,17 +35,18 @@ class SujetController extends AbstractController
         ]);
     }
      /**
-     *  @Route("/new", name="ajouter_sujet")
+     *  @Route("/new/{id}", name="ajouter_sujet")
      */
-    public function add( Request $request){
+    public function add($id, Request $request){
         $sujet=new Sujet();
         $form= $this->createForm(SujetType::class, $sujet);
         $form->handleRequest($request);
+        
  
         if ($form->isSubmitted() && $form->isValid()){
            $this->em->persist($sujet);
            $this->em->flush();
-           return $this->redirectToRoute("sondage_new",['id'=>$sujet->getId()]);
+           return $this->redirectToRoute("sondage_new",['idSujet'=>$sujet->getId() ,'idEnqueteur'=>$id ]);
         }
         return $this->render('Sujet/AddSujet.html.twig',[
             'sujet'=>$sujet,

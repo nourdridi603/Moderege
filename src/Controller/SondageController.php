@@ -7,6 +7,7 @@ use App\Entity\Question;
 use App\Form\SondageType;
 use App\Repository\SondageRepository;
 use App\Repository\SujetRepository;
+use App\Repository\EnqueteurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,8 +23,17 @@ class SondageController extends AbstractController
      */
     public function index(SondageRepository $sondageRepository): Response
     {
+        $sondages=$sondageRepository->findAll();
+        foreach($sondages as $son)
+        {    
+            $em1=$this->getDoctrine()->getManager();
+            $NbrQuestion =count($em1->getRepository(Question::class)->findByNbrSondage($son->getId()));
+            $son->setNbQuestion($NbrQuestion);
+            $em1->flush();
+        }
+        
         return $this->render('sondage/index.html.twig', [
-            'sondages' => $sondageRepository->findAll(),
+            'sondages' => $sondages
         ]);
     }
     /**
@@ -51,22 +61,25 @@ class SondageController extends AbstractController
     }
 
     /**
-     * @Route("/new/{id}", name="sondage_new", methods={"GET","POST"})
+     * @Route("/new/{idEnqueteur}/{idSujet}", name="sondage_new", methods={"GET","POST"})
      */
-    public function new($id,Request $request,SujetRepository $sujetRepository): Response
+    public function new($idEnqueteur, $idSujet,Request $request,SujetRepository $sujetRepository,EnqueteurRepository $enqueteurRepository): Response
     {
         $sondage = new Sondage();
         $form = $this->createForm(SondageType::class, $sondage);
         $form->handleRequest($request);
-        $sujet=$sujetRepository->find($id);
+        $sujet=$sujetRepository->find($idSujet);
+        $enqueteur=$enqueteurRepository->find($idEnqueteur);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $sondage->setSujet($sujet);
+            $sondage->setEnqueteur($enqueteur);
             $entityManager->persist($sondage);
             $entityManager->flush();
 
-            return $this->redirectToRoute('neww',['id'=>$sondage->getId()]);
+            return $this->redirectToRoute('consulting',['idSondage'=>$sondage->getId() , 
+                                                        'idEnqueteur'=>$idEnqueteur ]);
         }
 
         return $this->render('sondage/new.html.twig', [
@@ -128,5 +141,15 @@ class SondageController extends AbstractController
             $sondage=$sondageRepository->find($id);
             dd($sondage);
 
+    }
+
+
+    /**
+     * @Route("consulting/{idEnqueteur}/{idSondage}", name="consulting", methods={"GET"})
+     */
+    public function consulting($idEnqueteur, $idSondage): Response
+    {
+        return $this->render('consulting/index.html.twig',['id'=>$idSondage,
+                                                            'idEnqueteur'=> $idEnqueteur]);
     }
 }

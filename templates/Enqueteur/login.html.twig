@@ -2,7 +2,7 @@
 
 {% block body %}
 <h1>Connexion ! </h1>
-<form action="{{path('login')}}" method="post">
+<form action="{{path('ajouter_sujet' ,{'id': app.user.id})}}" method="post">
 <div class="form-group">
 <input type="text" required="true" name="_username" class="form-control" placeholder="Adresse mail ..." />
 </div>

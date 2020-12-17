@@ -36,11 +36,8 @@ class OptionController extends AbstractController
         $option = new Option();
         $form = $this->createForm(OptionType::class, $option);
         $form->handleRequest($request);
-
         $question=$questionRepository->find($id);
-        //dd($question);
-
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $option->setQuestion($question);

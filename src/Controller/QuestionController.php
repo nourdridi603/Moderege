@@ -30,17 +30,14 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/new/{id}", name="question_new", methods={"GET","POST"})
+     * @Route("/new/{idEnqueteur}/{idSondage}", name="question_new", methods={"GET","POST"})
      */
-    public function new($id,Request $request, SondageRepository $sondageRepository): Response
+    public function new($idEnqueteur, $idSondage,Request $request, SondageRepository $sondageRepository): Response
     {
         $question = new Question();
-        $sondage=$sondageRepository->find($id);
-        //dd($sondage);
-        
         $form = $this->createForm(QuestionType::class, $question);
         $form->handleRequest($request);
-       $sondage=$sondageRepository->find($id);
+       $sondage=$sondageRepository->find($idSondage);
         if ($form->isSubmitted() && $form->isValid()) {
             
             $entityManager = $this->getDoctrine()->getManager();
