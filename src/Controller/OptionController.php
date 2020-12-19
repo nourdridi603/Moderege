@@ -29,31 +29,28 @@ class OptionController extends AbstractController
     }
 
     /**
-     * @Route("/new/{id}", name="option_new", methods={"GET","POST"})
+     * @Route("/new/{idQuestion}/{idEnqueteur} ", name="option_new", methods={"GET","POST"})
      */
-    public function new($id,Request $request, QuestionRepository $questionRepository): Response
+    public function new($idQuestion,$idEnqueteur,Request $request, QuestionRepository $questionRepository): Response
     {
         $option = new Option();
         $form = $this->createForm(OptionType::class, $option);
         $form->handleRequest($request);
-        $question=$questionRepository->find($id);
+        $question=$questionRepository->find($idQuestion);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $option->setQuestion($question);
             $entityManager->persist($option);
             $entityManager->flush();
-
-
-            //$question=$_POST['question'];
-
-
+            
             return $this->redirectToRoute('ChoixRemun');
         }
 
         return $this->render('option/new.html.twig', [
             'option' => $option,
             'question'=>$question,
+            'idEnqueteur'=>$idEnqueteur,
             'form' => $form->createView(),
         ]);
     }

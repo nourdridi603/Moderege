@@ -83,7 +83,7 @@
     <div class="container">
         <h3 style="text-align: center;margin-right: 100px;margin-left: 100px;margin-top: 70px" class='neon-text'>Liste des Sondages!</h3>
        
-            <form action="{{ path('ajouter_sujet') }}">
+            <form action="{{ path('ajouter_sujet', {'id':idEnqueteur}) }}">
                 <Button type="submit" class="button3">Ajouter Un Sondage</Button>
             </form>
         </button>
@@ -102,8 +102,7 @@
         </thead>
         <tbody>
         {% for sondage in sondages %}
-            {% for question in sondage.questions %}
-
+           
                 <tr>
             <td>{{ sondage.titre }}</td>
             <td>{{ sondage.nbParticipant }}</td>
@@ -111,12 +110,10 @@
             <td>{{ sondage.nbReponse }}</td>
 
             <td>
-                <form action="{{ path('sondage_show', {'id': sondage.id}) }}">
-                    <button type="submit" class="button1"  > Consulter</button>
-                </form>
-            
-            <button  type="button1"  class="button2" > <a style="color:black"  href="{{ path('sondage_edit', {'id': sondage.id}) }}">Modifier</a></button>
-            <button  type="button1"  class="button3"> <a style="color:black"  href="{{ path('neww', {'id': sondage.id}) }}">ajouter un question</a></button>
+                
+             <button  type="button1"  class="button1" > <a style="color:black"  href="{{ path('sondage_show', {'id': sondage.id , 'idEnqueteur': idEnqueteur }) }}">Consulter</a></button>
+            <button  type="button1"  class="button2" > <a style="color:black"  href="{{ path('sondage_edit', {'id': sondage.id,'idEnqueteur': idEnqueteur }) }}">Modifier</a></button>
+            <button  type="button1"  class="button3"> <a style="color:black"  href="{{ path('neww', {'idSondage': sondage.id,'idEnqueteur': idEnqueteur }) }}">ajouter un question</a></button>
 
                 {#     <button  type="button" > <a style="color:black" href="{{ path('option_new',{'id':question.id} ) }}">ajouter option</a></button>
 #}
@@ -124,7 +121,7 @@
 
 
 
-            {% endfor %}
+           
             </td></tr>
         {% endfor %}
         </tbody>

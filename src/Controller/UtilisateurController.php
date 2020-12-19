@@ -17,6 +17,32 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UtilisateurController extends AbstractController
 {
+
+    /**
+     * @Route("/accueilEnqueteur", name="accueilEnqueteur")
+     */
+    public function accueilEnqueteur(): Response
+    {
+        return $this->render('Enqueteur\accueil_enqueteur.html.twig');
+    }
+
+    /**
+     * @Route("/accueilSonde", name="accueilsonde")
+     */
+    public function accueilSonde(): Response
+    {
+        return $this->render('Utilisateur\accueil_sonde.html.twig');
+    }
+
+
+     /**
+     * @Route("/", name="accueil")
+     */
+    public function accueil(): Response
+    {
+        return $this->render('accueil.html.twig');
+    }
+
     /**
      * @Route("/utilisateur", name="utilisateur")
      */
@@ -43,10 +69,10 @@ class UtilisateurController extends AbstractController
            // return $this->redirectToRoute('inscription',['id'=>$utilisateur->getId()]);
         }
         if($form->isSubmitted() && $form->isValid() && $form->get('save_enqueteur')->isClicked()){
-            return $this->redirectToRoute('addEnqueteur',['id'=>$utilisateur]);
+            return $this->redirectToRoute('addEnqueteur',['id'=>$utilisateur->getId()]);
         }
         if($form->isSubmitted() && $form->isValid() && $form->get('save_sonde')->isClicked()){
-            return $this->redirectToRoute('addUtilisateur');
+            return $this->redirectToRoute('accueil');
         }        
         return $this->render('Utilisateur/inscription.html.twig', [
             'form' => $form->createView(),
@@ -76,6 +102,8 @@ public function inscriptionEnqueteur(Utilisateur $utilisateur,Request $req){
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($enqueteur);
         $entityManager->flush();
+
+        return $this->redirectToRoute('accueil');
     }
         return $this->render('Enqueteur/inscription.html.twig', [
             'id' => $utilisateur,
@@ -190,12 +218,25 @@ public function updateEnqueteur(Enqueteur $enqueteur,Request $req){
        return $this->render("Enqueteur/mesSondage.html.twig",['sondages'=>$sondages]);
     }
 
+    /**
+     * @Route("/connexion_enqueteur",name="loginE")
+     */
+    public function loginEnqueteur(){
+
+        return $this->render("Enqueteur/login.html.twig");
+    }
+    /**
+     * @Route("/logoutEnqueteur",name="logout")
+     */
+    public function logoutEnqueteur(){
+        return $this->redirectToRoute("loginE");
+    }
+
+
 /**
      * @Route("/connexion",name="login")
      */
     public function login(){
-       
-
         return $this->render("Utilisateur/login.html.twig");
     }
     /**
@@ -204,17 +245,5 @@ public function updateEnqueteur(Enqueteur $enqueteur,Request $req){
     public function logout(){
         return $this->redirectToRoute("login");
     }
- /**
-     * @Route("/connexion_enqueteur",name="loginE")
-     */
-    public function loginEnqueteur(){
-        return $this->render("Enqueteur/login.html.twig");
-    }
-    /**
-     * @Route("/logoutEnqueteur",name="logoutE")
-     */
-    public function logoutEnqueteur(){
-        return $this->redirectToRoute("loginE");
-    }
-
+ 
 }

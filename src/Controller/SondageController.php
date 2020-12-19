@@ -18,28 +18,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SondageController extends AbstractController
 {
-    /**
-     * @Route("/", name="sondage_index", methods={"GET"})
+
+/**
+     * @Route("/paiementConsulting",name="paiementConsulting")
      */
-    public function index(SondageRepository $sondageRepository): Response
-    {
-        $sondages=$sondageRepository->findAll();
-        foreach($sondages as $son)
-        {    
-            $em1=$this->getDoctrine()->getManager();
-            $NbrQuestion =count($em1->getRepository(Question::class)->findByNbrSondage($son->getId()));
-            $son->setNbQuestion($NbrQuestion);
-            $em1->flush();
-        }
-        
-        return $this->render('sondage/index.html.twig', [
-            'sondages' => $sondages
-        ]);
+    public function login(){
+        return $this->render("consulting\paiementConsulting.html.twig");
     }
-    /**
-     * @Route("/sondages",name="listesondage",methods="GET")
+
+   
+ /**
+     * @Route("/sondages/{id}",name="listesondage",methods="GET")
      */
-    public function getSondages(){
+    public function getSondages($id){
         $repo=$this->getDoctrine()->getRepository(Sondage::class);
         $sondages=$repo->findAll();
         
@@ -51,14 +42,36 @@ class SondageController extends AbstractController
             $son->setNbQuestion($NbrSondage );
             $em1->flush();
         }
-        
-
-
+ 
         return $this->render('sondage/liste_sondage.html.twig',[
-            'sondages'=>$sondages
+            'sondages'=>$sondages,
+            'id'=>$id
             
         ]);
     }
+
+
+    /**
+     * @Route("/{idEnqueteur}", name="sondage_index", methods={"GET"})
+     */
+    public function index($idEnqueteur,SondageRepository $sondageRepository): Response
+    {
+        $sondages=$sondageRepository->findByIdEnqueteur($idEnqueteur);
+        foreach($sondages as $son)
+        {    
+            $em1=$this->getDoctrine()->getManager();
+            $NbrQuestion =count($em1->getRepository(Question::class)->findByNbrSondage($son->getId()));
+            $son->setNbQuestion($NbrQuestion);
+            $em1->flush();
+        }
+        
+        return $this->render('sondage/index.html.twig', [
+            'sondages' => $sondages,
+            'idEnqueteur'=>$idEnqueteur
+            ]);
+    }
+    
+   
 
     /**
      * @Route("/new/{idEnqueteur}/{idSujet}", name="sondage_new", methods={"GET","POST"})
@@ -84,25 +97,26 @@ class SondageController extends AbstractController
 
         return $this->render('sondage/new.html.twig', [
             'sondage' => $sondage,
-            'form' => $form->createView(),
-            
+            'idEnqueteur'=>$idEnqueteur,
+            'form' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/{id}", name="sondage_show", methods={"GET"})
+     * @Route("/{id}/{idEnqueteur}", name="sondage_show", methods={"GET"})
      */
-    public function show(Sondage $sondage): Response
+    public function show($idEnqueteur,Sondage $sondage): Response
     {
         return $this->render('sondage/show.html.twig', [
             'sondage' => $sondage,
+            'idEnqueteur'=>$idEnqueteur
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="sondage_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit/{idEnqueteur}", name="sondage_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Sondage $sondage): Response
+    public function edit(Request $request, Sondage $sondage, $idEnqueteur): Response
     {
         $form = $this->createForm(SondageType::class, $sondage);
         $form->handleRequest($request);
@@ -110,19 +124,21 @@ class SondageController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('sondage_index');
+            return $this->redirectToRoute('sondage_index',
+                                            ['idEnqueteur'=> $idEnqueteur]);
         }
 
         return $this->render('sondage/edit.html.twig', [
             'sondage' => $sondage,
             'form' => $form->createView(),
+            'idEnqueteur'=>$idEnqueteur
         ]);
     }
 
     /**
-     * @Route("/{id}", name="sondage_delete", methods={"DELETE"})
+     * @Route("/{id}/{idEnqueteur}", name="sondage_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Sondage $sondage): Response
+    public function delete($idEnqueteur,Request $request, Sondage $sondage): Response
     {
         if ($this->isCsrfTokenValid('delete'.$sondage->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -130,7 +146,8 @@ class SondageController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('sondage_index');
+        return $this->redirectToRoute('sondage_index',
+                                      ['idEnqueteur'=> $idEnqueteur]);
     }
     /**
      * @Route("/sondagee/{id}",name="sondagee")
@@ -149,7 +166,10 @@ class SondageController extends AbstractController
      */
     public function consulting($idEnqueteur, $idSondage): Response
     {
-        return $this->render('consulting/index.html.twig',['id'=>$idSondage,
+        return $this->render('consulting/index.html.twig',['idSondage'=>$idSondage,
                                                             'idEnqueteur'=> $idEnqueteur]);
     }
+
+
+    
 }

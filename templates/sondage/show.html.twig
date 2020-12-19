@@ -30,10 +30,10 @@
         </tbody>
     </table>
 
-    <a href="{{ path('sondage_index') }}" onclick="return confirm('are u sure?')" >back to list</a>
+    <a href="{{ path('sondage_index',{'idEnqueteur':idEnqueteur}) }}" onclick="return confirm('are u sure?')" >back to list</a>
 
 
-    <a href="{{ path('sondage_edit', {'id': sondage.id}) }}">edit</a>
+    <a href="{{ path('sondage_edit', {'id': sondage.id ,'idEnqueteur':idEnqueteur}) }}">edit</a>
 
     {{ include('sondage/_delete_form.html.twig') }}
 {% endblock %}

@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
+
 {%  block body %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">    <img src="https://scontent.ftun4-1.fna.fbcdn.net/v/t1.15752-9/131032922_1156434281466016_3160520140419395504_n.png?_nc_cat=103&ccb=2&_nc_sid=ae9488&_nc_ohc=jxThqoabDycAX8CDkfW&_nc_ht=scontent.ftun4-1.fna&oh=6e07304c5256131b4a482159451a3913&oe=5FFC6169">
 </a>
@@ -30,64 +32,17 @@
           <a class="nav-link" href="#">Contact</a>
         </li>
       </ul>
-      <button style="margin:1%"class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Se connecter</button>
-  <ul class="dropdown-menu" style="margin-left: 89%;
-    margin-top: -1%;">
-    <li><a class="dropdown-item" href="#">Enqueteur</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">sondé</a></li>
-  </ul>
-     
+
     </div>
   </div>
 </nav>
-<div class="c" style="background-color:#10aeda30;    border-radius: 98px;margin-left:22%" >
- 
-    
-  <h2 style="text-align: center; padding: 20px; color:  #0A1538;" >Informations sur votre sociéte ...</h2>
-        <br><br>
-        <div style="margin-left: 100px;margin-right: 160px ;" >
-{{form_start(form)}}
-<div style="display: none;">
 
-    {{form_row(form.nom)}}
-    {{form_row(form.prenom)}}
-    {{form_row(form.dateNaissance)}}
-    {{form_row(form.genre)}}
-    {{form_row(form.tel)}}
-    {{form_row(form.motDePasse)}}
-</div>
 
-    <p style="color: #0A1538;">{{form_label(form.matriculeFiscale)}}</p>
-    <p style="margin-left: 290px;margin-top: -29px;">{{form_widget(form.matriculeFiscale)}}</p>
-
-    <p style="color: #0A1538;">{{form_label(form.registreDesCommeerces)}}</p>
-    <p style="margin-left: 290px;margin-top: -29px;">{{form_widget(form.registreDesCommeerces)}}</p>
-
-    <p style="color: #0A1538;">{{form_label(form.adresseSociete)}}</p>
-    <p style="margin-left: 290px;margin-top: -29px;">{{form_widget(form.adresseSociete)}}</p>
-
-    <p style="color: #0A1538;">{{form_label(form.email)}}</p>
-    <p style="margin-left: 290px;margin-top: -29px;">{{form_widget(form.email)}}</p>
-
-    <p style="color: #0A1538;">{{form_label(form.cin)}}</p>
-    <p style="margin-left: 290px;margin-top: -29px;">{{form_widget(form.cin)}}</p>
-
-    <p style="color: #0A1538;">{{form_label(form.logo)}}</p>
-    <p style="margin-left: 290px;margin-top: -29px;">{{form_widget(form.logo)}}</p>
-
-    <p style="margin-left: 260px;margin-top:60px;">{{form_widget(form.submit,{ 'attr': {'class': 'btn btn-info'} })}}</p>
-
-{{form_end(form)}}
-<br><br>
-        </div>
-    </div>
-    </div>
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+<footer class="pt-4 my-md-5 pt-md-5 border-top">
     <div class="row">
       <div class="col-12 col-md">
         <img class="mb-2" style="height: 58px;
-    width: 56%;" src="https://scontent.ftun4-1.fna.fbcdn.net/v/t1.15752-9/131032922_1156434281466016_3160520140419395504_n.png?_nc_cat=103&ccb=2&_nc_sid=ae9488&_nc_ohc=jxThqoabDycAX8CDkfW&_nc_ht=scontent.ftun4-1.fna&oh=6e07304c5256131b4a482159451a3913&oe=5FFC6169" alt="" width="24" height="19">
+    width: 14%;" src="https://scontent.ftun4-1.fna.fbcdn.net/v/t1.15752-9/131362750_1645750308942476_3542390376714356479_n.png?_nc_cat=102&ccb=2&_nc_sid=ae9488&_nc_ohc=9BIGKuYvkbAAX_-PNIj&_nc_ht=scontent.ftun4-1.fna&oh=6e984e2024aaae71d89928aee1f84d36&oe=5FFB7EE4" alt="" width="24" height="19">
         <small class="d-block mb-3 text-muted">© 2020-2021</small>
       </div>
       <div class="col-6 col-md">

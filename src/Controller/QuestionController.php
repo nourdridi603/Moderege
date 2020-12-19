@@ -45,7 +45,8 @@ class QuestionController extends AbstractController
             $entityManager->persist($question);
             $entityManager->flush();
 
-            return $this->redirectToRoute('option_new',['id'=>$question->getId()]);
+            return $this->redirectToRoute('option_new',['idQuestion'=>$question->getId(),
+                                                        'idEnqueteur'=>$idEnqueteur]);
         }
 
         return $this->render('question/new.html.twig', [

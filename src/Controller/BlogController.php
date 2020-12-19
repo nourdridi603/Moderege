@@ -70,20 +70,18 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @Route("/neww/{id}", name="neww")
+     * @Route("/neww/{idSondage}/{idEnqueteur}", name="neww")
      * @param Request $request
      * @return \symfony\Component\HttpFoundation\Response
      */
-public function new(Request $request,$id, SondageRepository $sondageRepository):Response{
+public function new(Request $request,$idSondage, $idEnqueteur, SondageRepository $sondageRepository):Response{
     $question = new Question();
 
 
     $form=$this->createForm(QuestionType::class,$question);
     $form->handleRequest($request);
 
-    $sondage=$sondageRepository->find($id);
-
-
+    $sondage=$sondageRepository->find($idSondage);
 
     if ($form->isSubmitted()&& $form->isValid() ) {
         $em= $this->getDoctrine()->getManager();
@@ -96,6 +94,7 @@ public function new(Request $request,$id, SondageRepository $sondageRepository):
         return $this->render('question/neww.html.twig',[
             'sondage' => $sondage,
             'question'=>$question,
+            'idEnqueteur'=>$idEnqueteur,
             'form' => $form->createView(),
         ]);
 
@@ -103,6 +102,7 @@ public function new(Request $request,$id, SondageRepository $sondageRepository):
     return $this->render('question/neww.html.twig',[
         'sondage' => $sondage,
         'question'=>$question,
+        'idEnqueteur'=>$idEnqueteur,
         'form' => $form->createView(),
     ]);
 
